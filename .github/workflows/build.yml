@@ -99,22 +99,25 @@ jobs:
         run: scripts\ci\windows\assemble.bat
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: OpenStarbound-Windows-All-DevOnly
           path: dist/*
+          compression-level: 8
 
       - name: Upload Client
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: OpenStarbound-Windows-Client
           path: client_distribution/*
+          compression-level: 8
 
       - name: Upload Server
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: OpenStarbound-Windows-Server
           path: server_distribution/*
+          compression-level: 8
           
       - name: Install Inno Setup
         run: |
@@ -151,11 +154,11 @@ jobs:
           & "C:\Program Files (x86)\Inno Setup 6\iscc.exe" /Oinstaller scripts\inno\setup.iss
 
       - name: Upload Installer
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: OpenStarbound-Windows-Installer
-          path: installer/*
-          compression-level: 0
+          path: installer/OpenStarbound-Windows-Installer.exe
+          archive: false
   
   build_linux:
     name: Build OpenStarbound Linux x86_64
@@ -170,7 +173,7 @@ jobs:
           libxrandr-dev libxcursor-dev libxfixes-dev libxi-dev libxss-dev libxtst-dev \
           libxkbcommon-dev libdrm-dev libgbm-dev libgl1-mesa-dev libgles2-mesa-dev \
           libegl1-mesa-dev libdbus-1-dev libibus-1.0-dev libudev-dev libpipewire-0.3-dev libwayland-dev libdecor-0-dev liburing-dev \
-          autoconf autoconf-archive automake libtool patchelf
+          autoconf autoconf-archive automake libtool patchelf tarlz
 
       - name: Install CMake & Ninja
         uses: lukka/get-cmake@latest
@@ -213,13 +216,14 @@ jobs:
 
       - name: Prepare Artifacts
         working-directory: ${{ github.workspace }}
-        run: tar -cvf dist.tar dist
+        run: tarlz -c9vf OpenStarbound-Linux-GCC.tar.lz dist
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: OpenStarbound-Linux-GCC
-          path: dist.tar
+          path: OpenStarbound-Linux-GCC.tar.lz
+          archive: false
 
       - name: Run Tests
         uses: lukka/run-cmake@v10
@@ -235,16 +239,18 @@ jobs:
         run: scripts/ci/linux/assemble.sh
 
       - name: Upload Client Files
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: OpenStarbound-Linux-GCC-Client
-          path: client.tar
+          path: OpenStarbound-Linux-GCC-Client.tar.lz
+          archive: false
 
       - name: Upload Server Files
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: OpenStarbound-Linux-GCC-Server
-          path: server.tar
+          path: OpenStarbound-Linux-GCC-Server.tar.lz
+          archive: false
 
   build_linux_clang:
     name: Build OpenStarbound Linux Clang x86_64
@@ -305,13 +311,14 @@ jobs:
 
       - name: Prepare Artifacts
         working-directory: ${{ github.workspace }}
-        run: tar -cvf dist.tar dist
+        run: tarlz -c9vf OpenStarbound-Linux-Clang.tar.lz dist
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: OpenStarbound-Linux-Clang
-          path: dist.tar
+          path: OpenStarbound-Linux-Clang.tar.lz
+          archive: false
 
       - name: Run Tests
         uses: lukka/run-cmake@v10
@@ -327,16 +334,18 @@ jobs:
         run: scripts/ci/linux/assemble.sh
 
       - name: Upload Client Files
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: OpenStarbound-Linux-Clang-Client
-          path: client.tar
+          path: OpenStarbound-Linux-Clang-Client.tar.lz
+          archive: false
 
       - name: Upload Server Files
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: OpenStarbound-Linux-Clang-Server
-          path: server.tar
+          path: OpenStarbound-Linux-Clang-Server.tar.lz
+          archive: false
   
   build_linux_arm:
     name: Build OpenStarbound Linux arm64
@@ -394,13 +403,14 @@ jobs:
 
       - name: Prepare Artifacts
         working-directory: ${{ github.workspace }}
-        run: tar -cvf dist.tar dist
+        run: tarlz -c9vf OpenStarbound-Linux-ARM-GCC.tar.lz dist
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: OpenStarbound-Linux-ARM-GCC
-          path: dist.tar
+          path: OpenStarbound-Linux-ARM-GCC.tar.lz
+          archive: false
 
       - name: Run Tests
         uses: lukka/run-cmake@v10
@@ -416,16 +426,18 @@ jobs:
         run: scripts/ci/linux/assemble.sh
 
       - name: Upload Client Files
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: OpenStarbound-Linux-ARM-GCC-Client
-          path: client.tar
+          path: OpenStarbound-Linux-ARM-GCC-Client.tar.lz
+          archive: false
 
       - name: Upload Server Files
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: OpenStarbound-Linux-ARM-GCC-Server
-          path: server.tar
+          path: OpenStarbound-Linux-ARM-GCC-Server.tar.lz
+          archive: false
 
   build_linux_arm_clang:
     name: Build OpenStarbound Linux Clang arm64
@@ -486,13 +498,14 @@ jobs:
 
       - name: Prepare Artifacts
         working-directory: ${{ github.workspace }}
-        run: tar -cvf dist.tar dist
+        run: tarlz -c9vf OpenStarbound-Linux-ARM-Clang.tar.lz dist
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: OpenStarbound-Linux-ARM-Clang
-          path: dist.tar
+          path: OpenStarbound-Linux-ARM-Clang.tar.lz
+          archive: false
 
       - name: Run Tests
         uses: lukka/run-cmake@v10
@@ -508,16 +521,18 @@ jobs:
         run: scripts/ci/linux/assemble.sh
 
       - name: Upload Client Files
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: OpenStarbound-Linux-ARM-Clang-Client
-          path: client.tar
+          path: OpenStarbound-Linux-ARM-Clang-Client.tar.lz
+          archive: false
 
       - name: Upload Server Files
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: OpenStarbound-Linux-ARM-Clang-Server
-          path: server.tar
+          path: OpenStarbound-Linux-ARM-Clang-Server.tar.lz
+          archive: false
 
   build-mac-intel:
     name: Build OpenStarbound macOS x86_64
@@ -577,7 +592,7 @@ jobs:
             dist/
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: OpenStarbound-macOS-Intel
           path: dist/*
@@ -587,10 +602,11 @@ jobs:
         run: scripts/ci/macos/assemble.sh
 
       - name: Upload Client Files
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: OpenStarbound-macOS-Intel-Client
-          path: client.tar
+          path: OpenStarbound-macOS-Intel-Client.tar.lz
+          archive: false
 
   build-mac-arm:
     name: Build OpenStarbound macOS arm64
@@ -650,7 +666,7 @@ jobs:
             dist/
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: OpenStarbound-macOS-Silicon
           path: dist/*
@@ -660,7 +676,8 @@ jobs:
         run: scripts/ci/macos/assemble.sh
 
       - name: Upload Client Files
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: OpenStarbound-macOS-Silicon-Client
-          path: client.tar
+          path: OpenStarbound-macOS-Silicon-Client.tar.lz
+          archive: false
