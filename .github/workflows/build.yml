@@ -613,7 +613,7 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: |
           scripts/ci/macos/assemble.sh
-          client.tar.lz OpenStarbound-macOS-Intel-Client.tar.lz
+          mv -v client.tar.lz OpenStarbound-macOS-Intel-Client.tar.lz
 
       - name: Upload Client Files
         uses: actions/upload-artifact@v7.0.1
