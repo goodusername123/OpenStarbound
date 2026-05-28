@@ -19,7 +19,7 @@ DisableProgramGroupPage=yes
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
-OutputBaseFilename=OpenStarbound
+OutputBaseFilename=OpenStarbound-Windows-Installer
 SetupIconFile=scripts\inno\openstarbound.ico
 Compression=lzma2/ultra64
 SolidCompression=yes
@@ -54,4 +54,4 @@ Name: "{autodesktop}\{#AppName} Server"; Filename: "{app}\win\{#AppServerExeName
 Type: files; Name: "{app}\win\SDL2.dll"
 
 [Run]
-Filename: "{app}\win\{#AppExeName}-Windows-Installer"; Description: "{cm:LaunchProgram,{#StringChange(AppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\win\{#AppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(AppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
