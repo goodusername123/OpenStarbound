@@ -240,7 +240,7 @@ jobs:
 
       - name: Rename Client Files
         working-directory: ${{ github.workspace }}
-        run: mv client.tar.lz OpenStarbound-Linux-GCC-Client.tar.lz
+        run: mv -v client.tar.lz OpenStarbound-Linux-GCC-Client.tar.lz
 
       - name: Upload Client Files
         uses: actions/upload-artifact@v7.0.1
@@ -251,7 +251,7 @@ jobs:
 
       - name: Rename Server Files
         working-directory: ${{ github.workspace }}
-        run: mv server.tar.lz OpenStarbound-Linux-GCC-Server.tar.lz
+        run: mv -v server.tar.lz OpenStarbound-Linux-GCC-Server.tar.lz
 
       - name: Upload Server Files
         uses: actions/upload-artifact@v7.0.1
@@ -343,7 +343,7 @@ jobs:
 
       - name: Rename Client Files
         working-directory: ${{ github.workspace }}
-        run: mv client.tar.lz OpenStarbound-Linux-Clang-Client.tar.lz
+        run: mv -v client.tar.lz OpenStarbound-Linux-Clang-Client.tar.lz
 
       - name: Upload Client Files
         uses: actions/upload-artifact@v7.0.1
@@ -354,7 +354,7 @@ jobs:
 
       - name: Rename Server Files
         working-directory: ${{ github.workspace }}
-        run: mv server.tar.lz OpenStarbound-Linux-Clang-Server.tar.lz
+        run: mv -v server.tar.lz OpenStarbound-Linux-Clang-Server.tar.lz
 
       - name: Upload Server Files
         uses: actions/upload-artifact@v7.0.1
@@ -443,7 +443,7 @@ jobs:
 
       - name: Rename Client Files
         working-directory: ${{ github.workspace }}
-        run: mv client.tar.lz OpenStarbound-Linux-ARM-GCC-Client.tar.lz
+        run: mv -v client.tar.lz OpenStarbound-Linux-ARM-GCC-Client.tar.lz
 
       - name: Upload Client Files
         uses: actions/upload-artifact@v7.0.1
@@ -454,7 +454,7 @@ jobs:
 
       - name: Rename Server Files
         working-directory: ${{ github.workspace }}
-        run: mv server.tar.lz OpenStarbound-Linux-ARM-GCC-Server.tar.lz
+        run: mv -v server.tar.lz OpenStarbound-Linux-ARM-GCC-Server.tar.lz
 
       - name: Upload Server Files
         uses: actions/upload-artifact@v7.0.1
@@ -546,7 +546,7 @@ jobs:
 
       - name: Rename Client Files
         working-directory: ${{ github.workspace }}
-        run: mv client.tar.lz OpenStarbound-Linux-ARM-Clang-Client.tar.lz
+        run: mv -v client.tar.lz OpenStarbound-Linux-ARM-Clang-Client.tar.lz
 
       - name: Upload Client Files
         uses: actions/upload-artifact@v7.0.1
@@ -557,7 +557,7 @@ jobs:
 
       - name: Rename Server Files
         working-directory: ${{ github.workspace }}
-        run: mv server.tar.lz OpenStarbound-Linux-ARM-Clang-Server.tar.lz
+        run: mv -v server.tar.lz OpenStarbound-Linux-ARM-Clang-Server.tar.lz
 
       - name: Upload Server Files
         uses: actions/upload-artifact@v7.0.1
@@ -635,7 +635,7 @@ jobs:
 
       - name: Rename Client Files
         working-directory: ${{ github.workspace }}
-        run: mv client.tar.lz OpenStarbound-macOS-Intel-Client.tar.lz
+        run: mv -v client.tar.lz OpenStarbound-macOS-Intel-Client.tar.lz
 
       - name: Upload Client Files
         uses: actions/upload-artifact@v7.0.1
@@ -713,7 +713,7 @@ jobs:
 
       - name: Rename Client Files
         working-directory: ${{ github.workspace }}
-        run: mv client.tar.lz OpenStarbound-macOS-Silicon-Client.tar.lz
+        run: mv -v client.tar.lz OpenStarbound-macOS-Silicon-Client.tar.lz
 
       - name: Upload Client Files
         uses: actions/upload-artifact@v7.0.1
