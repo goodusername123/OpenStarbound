@@ -545,7 +545,7 @@ jobs:
 
       - name: Install Packages
         run: |
-          brew install autoconf automake libtool
+          brew install autoconf automake libtool tarlz
 
       - name: Install CMake & Ninja
         uses: lukka/get-cmake@latest
@@ -619,7 +619,7 @@ jobs:
 
       - name: Install Packages
         run: |
-          brew install autoconf automake libtool
+          brew install autoconf automake libtool tarlz
 
       - name: Install CMake & Ninja
         uses: lukka/get-cmake@latest
