@@ -54,4 +54,4 @@ Name: "{autodesktop}\{#AppName} Server"; Filename: "{app}\win\{#AppServerExeName
 Type: files; Name: "{app}\win\SDL2.dll"
 
 [Run]
-Filename: "{app}\win\{#AppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(AppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\win\{#AppExeName}-Windows-Installer"; Description: "{cm:LaunchProgram,{#StringChange(AppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
