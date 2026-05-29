@@ -99,7 +99,10 @@ jobs:
 
       - name: Assemble Files
         working-directory: ${{ github.workspace }}
-        run: scripts\ci\windows\assemble.bat
+        run: |
+          scripts/ci/windows/assemble.bat
+          rename client.zip OpenStarbound-Windows-Client.zip
+          rename server.zip OpenStarbound-Windows-Server.zip
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v7.0.1
@@ -112,15 +115,15 @@ jobs:
         uses: actions/upload-artifact@v7.0.1
         with:
           name: OpenStarbound-Windows-Client
-          path: client_distribution/*
-          compression-level: 8
+          path: OpenStarbound-Windows-Client.zip
+          archive: false
 
       - name: Upload Server
         uses: actions/upload-artifact@v7.0.1
         with:
           name: OpenStarbound-Windows-Server
-          path: server_distribution/*
-          compression-level: 8
+          path: OpenStarbound-Windows-Server.zip
+          archive: false
           
       - name: Install Inno Setup
         run: |
