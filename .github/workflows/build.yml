@@ -104,12 +104,18 @@ jobs:
           ren client.zip OpenStarbound-Windows-Client.zip
           ren server.zip OpenStarbound-Windows-Server.zip
 
+      - name: Prepare Artifacts
+        working-directory: ${{ github.workspace }}
+        run: |
+          7z -bb3 -mm=Deflate64 -mx=9 a dist.zip -r dist\
+          ren dist.zip OpenStarbound-Windows-All-DevOnly.zip
+
       - name: Upload Artifacts
         uses: actions/upload-artifact@v7.0.1
         with:
           name: OpenStarbound-Windows-All-DevOnly
-          path: dist/*
-          compression-level: 8
+          path: OpenStarbound-Windows-All-DevOnly.zip
+          archive: false
 
       - name: Upload Client
         uses: actions/upload-artifact@v7.0.1
@@ -609,11 +615,18 @@ jobs:
             lib/osx/libsteam_api.dylib \
             dist/
 
+      - name: Prepare Artifacts
+        working-directory: ${{ github.workspace }}
+        run: |
+          tarlz -c9vf dist.tar.lz dist
+          mv -v dist.tar.lz OpenStarbound-macOS-Intel.tar.lz
+
       - name: Upload Artifacts
         uses: actions/upload-artifact@v7.0.1
         with:
           name: OpenStarbound-macOS-Intel
-          path: dist/*
+          path: OpenStarbound-macOS-Intel.tar.lz
+          archive: false
 
       - name: Assemble Files
         working-directory: ${{ github.workspace }}
@@ -685,11 +698,18 @@ jobs:
             lib/osx/libsteam_api.dylib \
             dist/
 
+      - name: Prepare Artifacts
+        working-directory: ${{ github.workspace }}
+        run: |
+          tarlz -c9vf dist.tar.lz dist
+          mv -v dist.tar.lz OpenStarbound-macOS-Silicon.tar.lz
+
       - name: Upload Artifacts
         uses: actions/upload-artifact@v7.0.1
         with:
           name: OpenStarbound-macOS-Silicon
-          path: dist/*
+          path: OpenStarbound-macOS-Silicon.tar.lz
+          archive: false
 
       - name: Assemble Files
         working-directory: ${{ github.workspace }}
