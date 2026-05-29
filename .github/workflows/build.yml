@@ -101,8 +101,8 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: |
           scripts/ci/windows/assemble.bat
-          rename client.zip OpenStarbound-Windows-Client.zip
-          rename server.zip OpenStarbound-Windows-Server.zip
+          ren client.zip OpenStarbound-Windows-Client.zip
+          ren server.zip OpenStarbound-Windows-Server.zip
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v7.0.1
