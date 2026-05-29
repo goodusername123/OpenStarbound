@@ -107,7 +107,7 @@ jobs:
       - name: Prepare Artifacts
         working-directory: ${{ github.workspace }}
         run: |
-          7z -bb3 -mm=Deflate64 -mx=9 a dist.zip -r dist\
+          7z -bb3 -mtp=2 -mm=Deflate64 -mx=9 a dist.zip -r dist\
           ren dist.zip OpenStarbound-Windows-All-DevOnly.zip
 
       - name: Upload Artifacts
