@@ -23,15 +23,6 @@ on:
         description: macOS
         default: false
 
-  push:
-    paths:
-      - 'assets/**'
-      - 'source/**'
-      - 'toolchains/**'
-      - 'triplets/**'
-    branches:
-      - '*' 
-
   pull_request:
     paths:
       - 'assets/**'
