@@ -23,3 +23,7 @@ if(PORT MATCHES "opus")
     "-DBUILD_TESTING=OFF"
   )
 endif()
+
+if (PORT STREQUAL "zlib-ng")
+    set(ZLIB_COMPAT ON)
+endif ()
