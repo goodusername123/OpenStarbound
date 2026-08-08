@@ -594,6 +594,11 @@ public:
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
 #endif
 
+    SDL_GL_SetAttribute( SDL_GL_RED_SIZE, 10 );
+    SDL_GL_SetAttribute( SDL_GL_GREEN_SIZE, 10 );
+    SDL_GL_SetAttribute( SDL_GL_BLUE_SIZE, 10 );
+    SDL_GL_SetAttribute( SDL_GL_ALPHA_SIZE, 2 );
+
     Logger::info("Application: Creating SDL OpenGL context");
     m_sdlGlContext = SDL_GL_CreateContext(m_sdlWindow);
     if (!m_sdlGlContext)

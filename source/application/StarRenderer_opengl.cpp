@@ -184,14 +184,14 @@ OpenGlRenderer::GlFrameBuffer::GlFrameBuffer(Json const& fbConfig) : config(fbCo
   }
 
   if (multisample) {
-    auto internalFormat =  hdr ? GL_RGBA16F : GL_RGBA8;
+    auto internalFormat =  hdr ? GL_RGBA16F : GL_RGB10_A2;
     
     glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, multisample, internalFormat, size[0], size[1], GL_TRUE);
   } else {
     auto format = alpha ? GL_RGBA : GL_RGB;
     auto internalFormat =  hdr ? 
         (alpha ? GL_RGBA16F : GL_RGB16F) :
-        (alpha ? GL_RGBA8 : GL_RGB8);
+        (alpha ? GL_RGB10_A2 : GL_RGB10);
     auto type = hdr ? GL_FLOAT : GL_UNSIGNED_BYTE;
     
     glTexImage2D(
@@ -247,14 +247,14 @@ void OpenGlRenderer::GlFrameBuffer::makeAlt(Vec2U const& screenSize) {
   Vec2U size = overrideSize ? *overrideSize : (screenSize / sizeDiv);
 
   if (multisample) {
-    auto internalFormat =  hdr ? GL_RGBA16F : GL_RGBA8;
+    auto internalFormat =  hdr ? GL_RGBA16F : GL_RGB10_A2;
     
     glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, multisample, internalFormat, size[0], size[1], GL_TRUE);
   } else {
     auto format = alpha ? GL_RGBA : GL_RGB;
     auto internalFormat =  hdr ? 
         (alpha ? GL_RGBA16F : GL_RGB16F) :
-        (alpha ? GL_RGBA8 : GL_RGB8);
+        (alpha ? GL_RGB10_A2 : GL_RGB10);
     auto type = hdr ? GL_FLOAT : GL_UNSIGNED_BYTE;
     
     glTexImage2D(
@@ -779,7 +779,7 @@ void OpenGlRenderer::setScreenSize(Vec2U screenSize) {
     unsigned sizeDiv = frameBuffer.second->sizeDiv;
     bool hdr = settingModeValue(frameBuffer.second->hdrMode,m_hdrSetting);
     if (unsigned multisample = frameBuffer.second->multisample) {
-      auto internalFormat =  hdr ? GL_RGBA16F : GL_RGBA8;
+      auto internalFormat =  hdr ? GL_RGBA16F : GL_RGB10_A2;
       
       glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, frameBuffer.second->texture->glTextureId());
       glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, multisample, internalFormat, m_screenSize[0] / sizeDiv, m_screenSize[1] / sizeDiv, GL_TRUE);
@@ -791,7 +791,7 @@ void OpenGlRenderer::setScreenSize(Vec2U screenSize) {
       auto format = frameBuffer.second->alpha ? GL_RGBA : GL_RGB;
       auto internalFormat =  hdr ? 
           (frameBuffer.second->alpha ? GL_RGBA16F : GL_RGB16F) :
-          (frameBuffer.second->alpha ? GL_RGBA8 : GL_RGB8);
+          (frameBuffer.second->alpha ? GL_RGB10_A2 : GL_RGB10);
       auto type = hdr ? GL_FLOAT : GL_UNSIGNED_BYTE;
       
       glBindTexture(GL_TEXTURE_2D, frameBuffer.second->texture->glTextureId());
