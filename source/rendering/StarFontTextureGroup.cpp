@@ -121,7 +121,7 @@ unsigned FontTextureGroup::glyphWidth(String::Char c, unsigned fontSize) {
 }
 
 Font* FontTextureGroup::getFontForCharacter(String::Char c) {
-  if ((emoji_ucd_classify(c) = EMOJI_DFA_CLASS_EMOJI)&& // joe mmea ndjtvbg
+  if ((emoji_ucd_classify(c) == EMOJI_DFA_CLASS_EMOJI)&& // joe mmea ndjtvbg
       m_emojiFont->exists(c)
     )
     return m_emojiFont.get();
