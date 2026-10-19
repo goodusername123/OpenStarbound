@@ -4,7 +4,7 @@
 #include "StarFont.hpp"
 #include "StarRenderer.hpp"
 #include "StarDirectives.hpp"
-#include "c-emoji/emoji_ucd_classify.h"
+#include "c-emoji/emoji_ucd.h"
 
 namespace Star {
 
