@@ -121,7 +121,7 @@ unsigned FontTextureGroup::glyphWidth(String::Char c, unsigned fontSize) {
 }
 
 Font* FontTextureGroup::getFontForCharacter(String::Char c) {
-  if ((emoji_ucd_is_presentation(c) || emoji_ucd_is_modifier_base(c))&& // joe mmea ndjtvbg
+  if ((emoji_ucd_is_presentation(c) || emoji_ucd_is_modifier_base(c)) && // Check only for Unicode emojis marked with a preference for emoji display/presentation (so that random symbols and digits don't get overridden) + Unicode emoji modifier bases (since for the purposes of simple single codepoint handling here they are just more regular emojis that need to be included)
       m_emojiFont->exists(c)
     )
     return m_emojiFont.get();
