@@ -22,7 +22,6 @@ SET (star_server_SOURCES
 IF (STAR_SYSTEM_WINDOWS)
   SET (star_server_RESOURCES
       starbound_server.rc
-      starbound_server.exe.manifest
     )
 ENDIF ()
 
